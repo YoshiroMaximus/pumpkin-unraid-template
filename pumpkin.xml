@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>PumpkinMC</Name>
+  <Repository>ghcr.io/pumpkin-mc/pumpkin:latest</Repository>
+  <Registry>https://ghcr.io/pumpkin-mc/pumpkin</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Pumpkin-MC/Pumpkin/issues</Support>
+  <Project>https://pumpkinmc.org/</Project>
+  <Overview>Pumpkin is a high-performance Minecraft server software written entirely in Rust.&#13;
+&#13;
+It aims to be a fast, efficient, and fully compatible alternative to the vanilla Java server, with low memory usage and quick startup times.&#13;
+&#13;
+NOTE: Pumpkin is experimental software under active development. It is not yet feature-complete and is not recommended for production worlds. Always keep backups of your world data. The "latest" image tracks the most recent release build.&#13;
+&#13;
+Default configuration files are generated in the data folder on first launch and can be edited there.</Overview>
+  <Category>GameServers:</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Pumpkin-MC/Pumpkin/master/assets/default_icon.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Minecraft Port" Target="25565" Default="25565" Mode="tcp" Description="Java Edition Minecraft port." Type="Port" Display="always" Required="true" Mask="false">25565</Config>
+  <Config Name="Server Data" Target="/pumpkin" Default="/mnt/user/appdata/pumpkinmc" Mode="rw" Description="Persistent folder for world data and configuration files (config.toml, etc)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pumpkinmc</Config>
+  <Config Name="RUST_LOG" Target="RUST_LOG" Default="info" Mode="" Description="Logging verbosity. Options: error, warn, info, debug, trace." Type="Variable" Display="advanced" Required="false" Mask="false">info</Config>
+</Container>
