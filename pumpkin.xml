@@ -9,25 +9,33 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/Pumpkin-MC/Pumpkin/issues</Support>
   <Project>https://pumpkinmc.org/</Project>
-  <Overview>Pumpkin is a high-performance Minecraft server software written entirely in Rust.&#13;
+  <Overview>Pumpkin is a high-performance Minecraft server software written entirely in Rust, supporting both Java and Bedrock Edition clients.&#13;
 &#13;
-It aims to be a fast, efficient, and fully compatible alternative to the vanilla Java server, with low memory usage and quick startup times.&#13;
+NOTE: Pumpkin is experimental software under active development and is not yet feature-complete. It is not recommended for production worlds. Always keep backups of your world data. The "latest" image tracks the most recent release build, so compatibility may change often.&#13;
 &#13;
-NOTE: Pumpkin is experimental software under active development. It is not yet feature-complete and is not recommended for production worlds. Always keep backups of your world data. The "latest" image tracks the most recent release build.&#13;
+Configuration files (config.toml, etc) are generated in the data folder on first launch and can be edited there.&#13;
 &#13;
-Default configuration files are generated in the data folder on first launch and can be edited there.</Overview>
+PERMISSIONS: This image runs as the non-root user 2613:2613 and does not support PUID/PGID. If the server fails to start or save, run "chown -R 2613:2613 /mnt/user/appdata/pumpkinmc" from the Unraid terminal first.&#13;
+&#13;
+TIP: If Crafty Controller or another Minecraft server is already using port 25565, change the host port here to something free (e.g. 30000).</Overview>
   <Category>GameServers:</Category>
   <WebUI/>
   <TemplateURL>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/Pumpkin-MC/Pumpkin/master/assets/default_icon.png</Icon>
-  <ExtraParams/>
+  <Icon>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.png</Icon>
+  <ExtraParams>--security-opt=no-new-privileges:true</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled/>
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="Minecraft Port" Target="25565" Default="25565" Mode="tcp" Description="Java Edition Minecraft port." Type="Port" Display="always" Required="true" Mask="false">25565</Config>
-  <Config Name="Server Data" Target="/pumpkin" Default="/mnt/user/appdata/pumpkinmc" Mode="rw" Description="Persistent folder for world data and configuration files (config.toml, etc)." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pumpkinmc</Config>
+  <Changes>### 2026-06-21
+- Initial template for Pumpkin (Java &amp; Bedrock).
+- Self-hosted icon, no-new-privileges hardening, optional Bedrock UDP port.
+- Added note about the container's non-root UID (2613) and appdata permissions.
+</Changes>
+  <Config Name="Server Data" Target="/pumpkin" Default="/mnt/user/appdata/pumpkinmc" Mode="rw" Description="Pumpkin server data, world files, and config." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pumpkinmc</Config>
+  <Config Name="Java Minecraft Port" Target="25565" Default="25565" Mode="tcp" Description="Java Edition server port. Change the host port if Crafty or another server already uses 25565." Type="Port" Display="always" Required="true" Mask="false">25565</Config>
+  <Config Name="Bedrock Port" Target="19132" Default="19132" Mode="udp" Description="Optional Bedrock Edition UDP port, used only if Bedrock support is enabled in config.toml." Type="Port" Display="advanced" Required="false" Mask="false">19132</Config>
   <Config Name="RUST_LOG" Target="RUST_LOG" Default="info" Mode="" Description="Logging verbosity. Options: error, warn, info, debug, trace." Type="Variable" Display="advanced" Required="false" Mask="false">info</Config>
 </Container>
