@@ -1,9 +1,8 @@
 # Pumpkin – Unraid Template
 
-[![Unraid](https://img.shields.io/badge/Unraid-Community%20Apps-f15a2c?logo=unraid&logoColor=white)](https://unraid.net/community/apps)
-[![Made with Rust](https://img.shields.io/badge/Made%20with-Rust-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Image](https://img.shields.io/badge/ghcr.io-pumpkin--mc%2Fpumpkin-2496ed?logo=docker&logoColor=white)](https://github.com/Pumpkin-MC/Pumpkin/pkgs/container/pumpkin)
-[![License](https://img.shields.io/github/license/YoshiroMaximus/pumpkin-unraid-template)](LICENSE)
+[![Available on GitHub](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg)](https://github.com/Pumpkin-MC/Pumpkin)
+[![Website](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/website_vector.svg)](https://pumpkinmc.org/)
+[![Issues](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/issues_vector.svg)](https://github.com/Pumpkin-MC/Pumpkin/issues)
 
 Unraid Community Apps template for [**Pumpkin**](https://github.com/Pumpkin-MC/Pumpkin) — an experimental, high-performance Minecraft server (Java & Bedrock) written in Rust.
 
