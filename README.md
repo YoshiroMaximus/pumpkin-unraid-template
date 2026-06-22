@@ -1,64 +1,42 @@
-# Pumpkin – Unraid Community Apps Template
+# Pumpkin – Unraid Template
 
-An [Unraid](https://unraid.net/) Community Applications template for [**Pumpkin**](https://github.com/Pumpkin-MC/Pumpkin), a high-performance Minecraft server software written entirely in Rust, supporting both Java and Bedrock Edition clients.
+[![Unraid](https://img.shields.io/badge/Unraid-Community%20Apps-f15a2c?logo=unraid&logoColor=white)](https://unraid.net/community/apps)
+[![Made with Rust](https://img.shields.io/badge/Made%20with-Rust-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![Image](https://img.shields.io/badge/ghcr.io-pumpkin--mc%2Fpumpkin-2496ed?logo=docker&logoColor=white)](https://github.com/Pumpkin-MC/Pumpkin/pkgs/container/pumpkin)
+[![License](https://img.shields.io/github/license/YoshiroMaximus/pumpkin-unraid-template)](LICENSE)
 
-## ⚠️ Experimental software
+Unraid Community Apps template for [**Pumpkin**](https://github.com/Pumpkin-MC/Pumpkin) — an experimental, high-performance Minecraft server (Java & Bedrock) written in Rust.
 
-Pumpkin is under active development and is **not yet feature-complete**. It is not recommended for production worlds. Always keep backups of your world data. This template uses the `latest` image tag, which tracks the most recent release build, so compatibility may change often.
+> ⚠️ **Experimental.** Not feature-complete; not for production. Keep world backups. Uses the `latest` image, so behavior can change often.
 
-## Installation
+## Install
 
-### Via Community Applications (once approved)
+Search **PumpkinMC** in Community Apps, or add this template URL manually (**Docker → Add Container → Template**):
 
-1. Install the **Community Applications** plugin on your Unraid server.
-2. Go to the **Apps** tab and search for **PumpkinMC**.
-3. Click **Install**, adjust the port and data path if needed, and **Apply**.
-
-### Manual install (before CA approval)
-
-1. In the Unraid web UI go to **Docker → Add Container**.
-2. Set **Template** to the raw URL of this template:
-   ```
-   https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml
-   ```
-3. Adjust settings and click **Apply**.
-
-## Configuration
-
-| Setting | Default | Description |
-| --- | --- | --- |
-| Server Data | `/mnt/user/appdata/pumpkinmc` → `/pumpkin` | World data and config files. |
-| Java Minecraft Port | `25565/tcp` | Java Edition server port. |
-| Bedrock Port | `19132/udp` | Optional Bedrock port, only if enabled in `config.toml`. Not exposed by the image by default. |
-| `RUST_LOG` | `info` | Log verbosity (`error`, `warn`, `info`, `debug`, `trace`). |
-
-Configuration files (e.g. `config.toml`) are generated in the data folder on first launch and can be edited there.
-
-### Port conflicts
-
-If **Crafty Controller** or another Minecraft server is already installed, it may reserve port `25565`. In that case change the **host** port for "Java Minecraft Port" to something free (e.g. `30000`) to avoid a conflict.
-
-## Permissions (important)
-
-The Pumpkin image runs as a **fixed non-root user, UID/GID `2613:2613`** (baked into the image — it does **not** support `PUID`/`PGID`). Unraid's `appdata` share is normally owned by `99:100`, so on first launch Pumpkin may be unable to write its world data and config, and the server will fail to start or save.
-
-Fix it once from the Unraid terminal **before** starting the container:
-
-```bash
-mkdir -p /mnt/user/appdata/pumpkinmc
-chown -R 2613:2613 /mnt/user/appdata/pumpkinmc
+```
+https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml
 ```
 
-## Security
+## ⚠️ Permissions
 
-The container runs with `--security-opt=no-new-privileges:true`, is not privileged, and runs as a non-root user.
+The image runs as fixed UID `2613` (no `PUID`/`PGID`). Unraid appdata is `99:100`, so **before first start** run:
+
+```bash
+chown -R 2613:2613 /mnt/user/appdata/pumpkinmc
+```
+Otherwise the world/config won't save.
+
+## Config
+
+| Setting | Default |
+| --- | --- |
+| Data | `/mnt/user/appdata/pumpkinmc` → `/pumpkin` |
+| Java port | `25565/tcp` |
+| Bedrock port (optional) | `19132/udp` |
+| `RUST_LOG` | `info` |
+
+Tip: if Crafty (or another server) already uses `25565`, change the host port (e.g. `30000`).
 
 ## Links
 
-- Pumpkin project: https://pumpkinmc.org/
-- Source & issues: https://github.com/Pumpkin-MC/Pumpkin
-- Container image: `ghcr.io/pumpkin-mc/pumpkin:latest`
-
-## License
-
-This template is provided under the terms in [LICENSE](LICENSE). Pumpkin itself is licensed by its respective authors.
+[Project](https://pumpkinmc.org/) · [Source & issues](https://github.com/Pumpkin-MC/Pumpkin) · `ghcr.io/pumpkin-mc/pumpkin:latest`
