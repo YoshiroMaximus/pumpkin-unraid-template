@@ -32,9 +32,12 @@ TIP: If Crafty Controller or another Minecraft server is already using port 2556
 - Self-hosted icon, no-new-privileges hardening, optional Bedrock UDP port.
 - Run container as 99:100 (nobody:users) so it can write to appdata out of the box,
   avoiding a VanillaData::load permission panic on first start.
+- Add optional RCON port (25575) and TZ variable.
 </Changes>
   <Config Name="Server Data" Target="/pumpkin" Default="/mnt/user/appdata/pumpkinmc" Mode="rw" Description="Pumpkin server data, world files, and config." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pumpkinmc</Config>
   <Config Name="Java Minecraft Port" Target="25565" Default="25565" Mode="tcp" Description="Java Edition server port. Change the host port if Crafty or another server already uses 25565." Type="Port" Display="always" Required="true" Mask="false">25565</Config>
   <Config Name="Bedrock Port" Target="19132" Default="19132" Mode="udp" Description="Optional Bedrock Edition UDP port, used only if Bedrock support is enabled in config.toml." Type="Port" Display="advanced" Required="false" Mask="false">19132</Config>
+  <Config Name="RCON Port" Target="25575" Default="25575" Mode="tcp" Description="Optional RCON admin port. Disabled by default; enable it and set a strong password under [networking.rcon] in config.toml before exposing it." Type="Port" Display="advanced" Required="false" Mask="false">25575</Config>
   <Config Name="RUST_LOG" Target="RUST_LOG" Default="info" Mode="" Description="Logging verbosity. Options: error, warn, info, debug, trace." Type="Variable" Display="advanced" Required="false" Mask="false">info</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="" Description="Timezone for log timestamps, e.g. America/New_York. Defaults to UTC." Type="Variable" Display="advanced" Required="false" Mask="false">UTC</Config>
 </Container>
