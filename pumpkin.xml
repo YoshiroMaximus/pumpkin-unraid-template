@@ -15,14 +15,12 @@ NOTE: Pumpkin is experimental software under active development and is not yet f
 &#13;
 Configuration files (config.toml, etc) are generated in the data folder on first launch and can be edited there.&#13;
 &#13;
-PERMISSIONS: This image runs as the non-root user 2613:2613 and does not support PUID/PGID. If the server fails to start or save, run "chown -R 2613:2613 /mnt/user/appdata/pumpkinmc" from the Unraid terminal first.&#13;
-&#13;
 TIP: If Crafty Controller or another Minecraft server is already using port 25565, change the host port here to something free (e.g. 30000).</Overview>
   <Category>GameServers:</Category>
   <WebUI/>
   <TemplateURL>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.png</Icon>
-  <ExtraParams>--security-opt=no-new-privileges:true</ExtraParams>
+  <ExtraParams>--security-opt=no-new-privileges:true --user 99:100</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled/>
@@ -32,7 +30,8 @@ TIP: If Crafty Controller or another Minecraft server is already using port 2556
   <Changes>### 2026-06-21
 - Initial template for Pumpkin (Java &amp; Bedrock).
 - Self-hosted icon, no-new-privileges hardening, optional Bedrock UDP port.
-- Added note about the container's non-root UID (2613) and appdata permissions.
+- Run container as 99:100 (nobody:users) so it can write to appdata out of the box,
+  avoiding a VanillaData::load permission panic on first start.
 </Changes>
   <Config Name="Server Data" Target="/pumpkin" Default="/mnt/user/appdata/pumpkinmc" Mode="rw" Description="Pumpkin server data, world files, and config." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pumpkinmc</Config>
   <Config Name="Java Minecraft Port" Target="25565" Default="25565" Mode="tcp" Description="Java Edition server port. Change the host port if Crafty or another server already uses 25565." Type="Port" Display="always" Required="true" Mask="false">25565</Config>

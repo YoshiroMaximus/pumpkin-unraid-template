@@ -17,14 +17,15 @@ Search **PumpkinMC** in Community Apps, or add this template URL manually (**Doc
 https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.xml
 ```
 
-## ⚠️ Permissions
+## Permissions
 
-The image runs as fixed UID `2613` (no `PUID`/`PGID`). Unraid appdata is `99:100`, so **before first start** run:
+The image defaults to a fixed UID `2613` that can't write to Unraid appdata (`99:100`), which causes a `VanillaData::load` panic on first start. This template avoids that by running the container as `99:100` via `--user 99:100` in **Extra Parameters** — no manual `chown` needed.
+
+If you already have a broken appdata folder from an earlier run, clean it once:
 
 ```bash
-chown -R 2613:2613 /mnt/user/appdata/pumpkinmc
+chown -R 99:100 /mnt/user/appdata/pumpkinmc
 ```
-Otherwise the world/config won't save.
 
 ## Config
 
