@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <CommunityApplications>
-  <Profile>Unraid templates by YoshiroMaximus.
-
-This repository provides a Community Applications template for Pumpkin, a high-performance Minecraft server software written entirely in Rust, supporting both Java and Bedrock Edition clients. Pumpkin is experimental software under active development.</Profile>
+  <Profile>Unraid template for Pumpkin, an experimental high-performance Minecraft server written in Rust.</Profile>
   <Icon>https://raw.githubusercontent.com/YoshiroMaximus/pumpkin-unraid-template/main/pumpkin.png</Icon>
   <WebPage>https://github.com/YoshiroMaximus/pumpkin-unraid-template</WebPage>
   <Forum>https://github.com/YoshiroMaximus/pumpkin-unraid-template/issues</Forum>
